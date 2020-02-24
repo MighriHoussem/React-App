@@ -16,13 +16,36 @@ class App extends Component{
            ]
        }
     }
+    addNinja = (ninja)=>{
+      ninja.id = Math.random();
+      this.setState({
+          ninjas : [...this.state.ninjas,ninja]
+          }
+      )
+    };
+    deleteNinja = (id)=>{
+        console.log("Ninjas ID => "+id);
+        this.setState({
+            ninjas: [...this.state.ninjas.filter((ninja)=>{
+               return ninja.id !== id;
+            })]
+        })
+    };
+    componentDidMount() {
+        console.log("Component Dit Mount");
+    };
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("Compoenent updated => ");
+        console.log(prevState,prevProps);
+    };
+
     render() {
         return (
             <div className="App align-items-center">
                 <h1>My first React-App</h1>
                 <p className={"badge badge-primary d-flex justify-content-center"}>Welcome :D </p>
-                <Ninjas ninjas={this.state.ninjas}/>
-                <AddNinjas/>
+                <Ninjas ninjas={this.state.ninjas} deleteNinja={this.deleteNinja}/>
+                <AddNinjas addNinja={this.addNinja}/>
             </div>
         );
     }

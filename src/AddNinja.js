@@ -15,11 +15,15 @@ class AddNinja extends  Component
     handleSubmit = (event)=>
     {
         event.preventDefault();
-        if(this.state.name !== null && this.state.age != null && this.state.belt != null)
-        this.setState({
-            submit : true
-        });
-        console.log(this.state);
+        if(this.state.name != null && this.state.age != null && this.state.belt != null)
+        {
+            this.setState({
+                submit : true
+            });
+            console.log(this.state);
+            this.props.addNinja(this.state);
+        }
+
     };
     handleChange= (event)=>
     {
@@ -44,7 +48,7 @@ class AddNinja extends  Component
                         <input type={"number"} className="col-sm-2" placeholder={"Age"} id={"age"} onChange={this.handleChange}/>
                     </div>
                     <div>
-                        <label htmlFor={"belt"} className="col-1">Age: </label>
+                        <label htmlFor={"belt"} className="col-1">Belt: </label>
                         <input type={"text"} className="col-sm-2" placeholder={"Belt"} id={"belt"} onChange={this.handleChange}/>
                     </div>
                     <div>
